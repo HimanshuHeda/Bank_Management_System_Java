@@ -4,15 +4,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.*;
 
-public class SignupOne extends JFrame {
+public class SignupOne extends JFrame implements ActionListener {
+    
+    long random;
+    JTextField nameTextField, fnameTextField, emailTextField, addressTextField, cityTextField, stateTextField, pinTextField;
+    JDateChooser dateChooser;
+    JButton next;
+    JRadioButton male, female, married, unmarried, other;
     
     SignupOne() {
         
         setLayout(null);
         
         Random ran = new Random();
-        long random = Math.abs((ran.nextLong() % 9000L) + 1000L);
+        random = Math.abs((ran.nextLong() % 9000L) + 1000L);
         
         // This is the section of Application Number 
         JLabel formno = new JLabel("APPLICATION FORM NUMBER :" + random);
@@ -34,7 +41,7 @@ public class SignupOne extends JFrame {
         add(name);
         
         // Lets create a Text Field for Name 
-        JTextField nameTextField = new JTextField();
+        nameTextField = new JTextField();
         nameTextField.setFont(new Font("Raleway", Font.BOLD, 14));
         nameTextField.setBounds(300, 140, 400, 30);
         add(nameTextField);
@@ -47,7 +54,7 @@ public class SignupOne extends JFrame {
         add(fname);
         
         // Lets create a Text Field for Father's Name 
-        JTextField fnameTextField = new JTextField();
+        fnameTextField = new JTextField();
         fnameTextField.setFont(new Font("Raleway", Font.BOLD, 14));
         fnameTextField.setBounds(300, 190, 400, 30);
         add(fnameTextField);
@@ -60,7 +67,7 @@ public class SignupOne extends JFrame {
         add(dob);
         
         // Lets create a Date Chooser Field by importing the library 
-        JDateChooser dateChooser = new JDateChooser();
+        dateChooser = new JDateChooser();
         dateChooser.setBounds(300, 240, 400, 30);
         dateChooser.setForeground(new Color(105,105,105));
         add(dateChooser);
@@ -72,12 +79,12 @@ public class SignupOne extends JFrame {
         add(gender);
         
         // Lets create the Radio Buttons for gender
-        JRadioButton male = new JRadioButton("Male");
+        male = new JRadioButton("Male");
         male.setBounds(300, 290, 60, 30);
         male.setBackground(Color.WHITE);
         add(male);
         
-        JRadioButton female = new JRadioButton("Female");
+        female = new JRadioButton("Female");
         female.setBounds(450, 290, 120, 30);
         female.setBackground(Color.WHITE);
         add(female);
@@ -95,7 +102,7 @@ public class SignupOne extends JFrame {
         
         
         // Lets create a Text Field for Email 
-        JTextField emailTextField = new JTextField();
+        emailTextField = new JTextField();
         emailTextField.setFont(new Font("Raleway", Font.BOLD, 14));
         emailTextField.setBounds(300, 340, 400, 30);
         add(emailTextField);
@@ -108,17 +115,17 @@ public class SignupOne extends JFrame {
         add(marital);
         
         // Lets create the Radio Buttons for Marital Status
-        JRadioButton married = new JRadioButton("Married");
+        married = new JRadioButton("Married");
         married.setBounds(300, 390, 100, 30);
         married.setBackground(Color.WHITE);
         add(married);
         
-        JRadioButton unmarried = new JRadioButton("Unmarried");
+        unmarried = new JRadioButton("Unmarried");
         unmarried.setBounds(450, 390, 100, 30);
         unmarried.setBackground(Color.WHITE);
         add(unmarried);
         
-        JRadioButton other = new JRadioButton("Other");
+        other = new JRadioButton("Other");
         other.setBounds(630, 390, 100, 30);
         other.setBackground(Color.WHITE);
         add(other);
@@ -137,7 +144,7 @@ public class SignupOne extends JFrame {
         add(address);
         
         // Lets create a Text Field for Address 
-        JTextField addressTextField = new JTextField();
+        addressTextField = new JTextField();
         addressTextField.setFont(new Font("Raleway", Font.BOLD, 14));
         addressTextField.setBounds(300, 440, 400, 30);
         add(addressTextField);
@@ -150,7 +157,7 @@ public class SignupOne extends JFrame {
         add(city);
         
         // Lets create a Text Field for City
-        JTextField cityTextField = new JTextField();
+        cityTextField = new JTextField();
         cityTextField.setFont(new Font("Raleway", Font.BOLD, 14));
         cityTextField.setBounds(300, 490, 400, 30);
         add(cityTextField);
@@ -163,7 +170,7 @@ public class SignupOne extends JFrame {
         add(state);
         
         // Lets create a Text Field for State 
-        JTextField stateTextField = new JTextField();
+        stateTextField = new JTextField();
         stateTextField.setFont(new Font("Raleway", Font.BOLD, 14));
         stateTextField.setBounds(300, 540, 400, 30);
         add(stateTextField);
@@ -176,16 +183,17 @@ public class SignupOne extends JFrame {
         add(pincode);
         
         // Lets create a Text Field for Pin Code 
-        JTextField pinTextField = new JTextField();
+        pinTextField = new JTextField();
         pinTextField.setFont(new Font("Raleway", Font.BOLD, 14));
         pinTextField.setBounds(300, 590, 400, 30);
         add(pinTextField);
         
-        JButton next = new JButton("Next");
+        next = new JButton("Next");
         next.setBackground(Color.BLACK);
         next.setForeground(Color.WHITE);
         next.setFont(new Font("Ralway", Font.BOLD, 14));
         next.setBounds(620, 660, 80, 30);
+        next.addActionListener(this);
         add(next);
         
         getContentPane().setBackground(Color.WHITE);
@@ -195,6 +203,55 @@ public class SignupOne extends JFrame {
         setVisible(true);
     }
     
+    // Abstact Method Override
+    // ActionEvent ae is use to define what action you need to perform or on what component it is performaed 
+    public void actionPerformed(ActionEvent ae){
+        String formno = "" + random;                // Long (""+) -- it will conver it in string
+        String name = nameTextField.getText();      // Set Text (get text) -- is use to find the value from text field
+        String fname = fnameTextField.getText();    // Set Text
+        String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+        String gender = null;
+        if (male.isSelected()) {
+            gender = "Male";
+        }
+        else if(female.isSelected()){
+            gender = "Female";
+        }
+        
+        String email = emailTextField.getText();
+        String marital = null;
+        if (married.isSelected()) {
+            marital = "Married";
+        }
+        else if(unmarried.isSelected()){
+            marital = "Unmarried";
+        }
+        else if(other.isSelected()){
+            marital = "Other";
+        }
+        
+        String address = addressTextField.getText();
+        String city = cityTextField.getText();
+        String state = stateTextField.getText();
+        String pin = pinTextField.getText();
+        
+        // For Database Hit we just need to use the exception Handling 
+        try {
+            if (name.equals("") || fname.equals("") || dob.equals("") || gender.equals("") || email.equals("") || marital.equals("") || address.equals("") || city.equals("") || state.equals("") || pin.equals("")) {
+                JOptionPane.showMessageDialog(null,"All fields are required!");
+            }
+            else {
+                Conn c = new Conn();                // We are trying to insert the data in MySql By using DDL or DML commands
+                String query = "insert into signup values ('"+formno+"', '"+name+"', '"+fname+"', '"+dob+"', '"+gender+"', '"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+pin+"', '"+state+"')";     
+                c.s.executeUpdate(query);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "An error occurred!");
+        }
+        
+    }
     
     public static void main(String[] args) {
         new SignupOne();
