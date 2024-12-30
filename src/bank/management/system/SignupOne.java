@@ -21,6 +21,8 @@ public class SignupOne extends JFrame implements ActionListener {
         Random ran = new Random();
         random = Math.abs((ran.nextLong() % 9000L) + 1000L);
         
+        setTitle("APPLICATION FORM - PAGE 1");
+        
         // This is the section of Application Number 
         JLabel formno = new JLabel("APPLICATION FORM NUMBER :" + random);
         formno.setFont(new Font("Raleway", Font.BOLD, 30));
@@ -244,6 +246,9 @@ public class SignupOne extends JFrame implements ActionListener {
                 Conn c = new Conn();                // We are trying to insert the data in MySql By using DDL or DML commands
                 String query = "insert into signup values ('"+formno+"', '"+name+"', '"+fname+"', '"+dob+"', '"+gender+"', '"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+pin+"', '"+state+"')";     
                 c.s.executeUpdate(query);
+                
+                setVisible(false);
+                new SignupTwo(formno).setVisible(true);
             }
         }
         catch (Exception e){
