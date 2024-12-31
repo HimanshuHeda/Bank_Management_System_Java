@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class SignupTwo extends JFrame implements ActionListener {
     
-    long random;
+//    long random;
     JTextField aadhar,pan;
     JButton next;
     JRadioButton syes, sno, eyes, eno;
@@ -176,6 +176,7 @@ public class SignupTwo extends JFrame implements ActionListener {
         existinggroup.add(eyes);
         existinggroup.add(eno);
         
+        // Next Button
         next = new JButton("Next");
         next.setBackground(Color.BLACK);
         next.setForeground(Color.WHITE);
@@ -193,8 +194,7 @@ public class SignupTwo extends JFrame implements ActionListener {
     
     // Abstact Method Override
     // ActionEvent ae is use to define what action you need to perform or on what component it is performaed 
-    public void actionPerformed(ActionEvent ae){
-        String formno = "" + random;                // Long (""+) -- it will conver it in string
+    public void actionPerformed(ActionEvent ae){         
         String sreligion = (String) religion.getSelectedItem();
         String scategory = (String) category.getSelectedItem();    
         String sincome = (String) income.getSelectedItem();    
@@ -223,26 +223,23 @@ public class SignupTwo extends JFrame implements ActionListener {
         
         // For Database Hit we just need to use the exception Handling 
         try {
-            if (span.equals("") || saadhar.equals("")) {
-                JOptionPane.showMessageDialog(null,"All fields are required!");
-            }
-            else {
-                Conn c = new Conn();                // We are trying to insert the data in MySql By using DDL or DML commands
-                String query = "insert into signup values ('"+formno+"', '"+sreligion+"', '"+scategory+"', '"+sincome+"', '"+seducation+"', '"+soccupation+"', '"+span+"', '"+saadhar+"', '"+seniorcitizon+"', '"+existingaccount+"')";     
-                c.s.executeUpdate(query);
+            Conn c = new Conn();                // We are trying to insert the data in MySql By using DDL or DML commands
+            String query = "insert into signuptwo values ('"+formno+"', '"+sreligion+"', '"+scategory+"', '"+sincome+"', '"+seducation+"', '"+soccupation+"', '"+span+"', '"+saadhar+"', '"+seniorcitizon+"', '"+existingaccount+"')";     
+            c.s.executeUpdate(query);
+            JOptionPane.showMessageDialog(null, "Details submitted successfully!");
                 
                 // Navigate to SignupThree (uncomment once implemented)
                 // new SignupThree(formno).setVisible(true);
                 // setVisible(false);
-            }
+            
         }
         catch (Exception e){
             System.out.println(e);
-            JOptionPane.showMessageDialog(null, "An error occurred!");
+            JOptionPane.showMessageDialog(null, "An error occurred while submitting details!");
         }
     }
     
     public static void main(String[] args) {
-        new SignupTwo("");
+        new SignupTwo("").setVisible(true);
     }
 }

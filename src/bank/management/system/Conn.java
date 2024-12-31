@@ -11,7 +11,7 @@ public class Conn {
     public Conn(){
         
         try {
-            c = DriverManager.getConnection("jdbc:mysql:///bankmanagementsystem", "root", "Harsh@7878");                // localhost:3306 is the bydefault port for mysql
+            c = DriverManager.getConnection("jdbc:mysql:///bankmanagementsystem", "root", "");                // localhost:3306 is the bydefault port for mysql
             s = c.createStatement();
         }
         catch (Exception e) {
