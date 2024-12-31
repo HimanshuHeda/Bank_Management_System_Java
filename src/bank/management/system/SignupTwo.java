@@ -30,10 +30,10 @@ public class SignupTwo extends JFrame implements ActionListener {
         
         
         // This is the section of Religion
-        JLabel name = new JLabel("Religion :");
-        name.setFont(new Font("Raleway", Font.BOLD, 20));
-        name.setBounds(100, 140, 100, 30);
-        add(name);
+         JLabel religionLabel = new JLabel("Religion :");
+        religionLabel.setFont(new Font("Raleway", Font.BOLD, 20));
+        religionLabel.setBounds(100, 140, 100, 30);
+        add(religionLabel);
         
         // Lets Create a Combo Box of Religion 
         String valReligion[] = {"Hindu", "Muslim", "Sikh", "Christian", "Other"};
@@ -44,28 +44,28 @@ public class SignupTwo extends JFrame implements ActionListener {
         
         
         // This is the section of Category
-        JLabel fname = new JLabel("Category :");
-        fname.setFont(new Font("Raleway", Font.BOLD, 20));
-        fname.setBounds(100, 190, 200, 30);
-        add(fname);
+        JLabel categoryLabel = new JLabel("Category :");
+        categoryLabel.setFont(new Font("Raleway", Font.BOLD, 20));
+        categoryLabel.setBounds(100, 190, 200, 30);
+        add(categoryLabel);
         
         // Lets Create a Combo Box of Category
-        String valcategory[] = {"General", "OBC", "SC", "ST", "Other"};
-        category = new JComboBox(valcategory);
+        String valCategory[] = {"General", "OBC", "SC", "ST", "Other"};
+        category = new JComboBox(valCategory);
         category.setBounds(300, 190, 400, 30);
         category.setBackground(Color.WHITE);
         add(category);
         
         
         // This is the section of Income
-        JLabel dob = new JLabel("Income :");
-        dob.setFont(new Font("Raleway", Font.BOLD, 20));
-        dob.setBounds(100, 240, 200, 30);
-        add(dob);
+         JLabel incomeLabel = new JLabel("Income :");
+        incomeLabel.setFont(new Font("Raleway", Font.BOLD, 20));
+        incomeLabel.setBounds(100, 240, 200, 30);
+        add(incomeLabel);
         
         // Lets Create a Combo Box of Category
-        String valincome[] = {"Null", "< 1,50,000", "< 2,50,000", "< 5,00,000", "Upto 10,00,000"};
-        income = new JComboBox(valincome);
+        String valIncome[] = {"Null", "< 1,50,000", "< 2,50,000", "< 5,00,000", "Upto 10,00,000"};
+        income = new JComboBox(valIncome);
         income.setBounds(300, 240, 400, 30);
         income.setBackground(Color.WHITE);
         add(income);
@@ -139,12 +139,12 @@ public class SignupTwo extends JFrame implements ActionListener {
         
         // Lets create the Radio Buttons for Senior Citizen
         syes = new JRadioButton("Yes");
-        syes.setBounds(300, 290, 60, 30);
+        syes.setBounds(300, 540, 60, 30);
         syes.setBackground(Color.WHITE);
         add(syes);
         
         sno = new JRadioButton("No");
-        sno.setBounds(450, 290, 120, 30);
+        sno.setBounds(450, 540, 120, 30);
         sno.setBackground(Color.WHITE);
         add(sno);
         
@@ -162,12 +162,12 @@ public class SignupTwo extends JFrame implements ActionListener {
         
         // Lets create the Radio Buttons for Senior Citizen
         eyes = new JRadioButton("Yes");
-        eyes.setBounds(300, 290, 60, 30);
+        eyes.setBounds(300, 590, 60, 30);
         eyes.setBackground(Color.WHITE);
         add(eyes);
         
         eno = new JRadioButton("No");
-        eno.setBounds(450, 290, 120, 30);
+        eno.setBounds(450, 590, 120, 30);
         eno.setBackground(Color.WHITE);
         add(eno);
         
@@ -207,6 +207,7 @@ public class SignupTwo extends JFrame implements ActionListener {
         else if(sno.isSelected()){
             seniorcitizon = "No";
         }
+        // String seniorcitizen = syes.isSelected() ? "Yes" : "No";
         
         String existingaccount = null;
         if (eyes.isSelected()) {
@@ -215,6 +216,7 @@ public class SignupTwo extends JFrame implements ActionListener {
         else if(eno.isSelected()){
             existingaccount = "No";
         }
+        // String existingaccount = eyes.isSelected() ? "Yes" : "No";
         
         String span = pan.getText();
         String saadhar = aadhar.getText();
@@ -226,15 +228,18 @@ public class SignupTwo extends JFrame implements ActionListener {
             }
             else {
                 Conn c = new Conn();                // We are trying to insert the data in MySql By using DDL or DML commands
-                String query = "insert into signup values ('"+formno+"', '"+religion+"', '"+category+"', '"+dob+"', '"+gender+"', '"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+pin+"', '"+state+"')";     
+                String query = "insert into signup values ('"+formno+"', '"+sreligion+"', '"+scategory+"', '"+sincome+"', '"+seducation+"', '"+soccupation+"', '"+span+"', '"+saadhar+"', '"+seniorcitizon+"', '"+existingaccount+"')";     
                 c.s.executeUpdate(query);
+                
+                // Navigate to SignupThree (uncomment once implemented)
+                // new SignupThree(formno).setVisible(true);
+                // setVisible(false);
             }
         }
         catch (Exception e){
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "An error occurred!");
         }
-        
     }
     
     public static void main(String[] args) {
