@@ -223,15 +223,31 @@ public class SignupTwo extends JFrame implements ActionListener {
         
         // For Database Hit we just need to use the exception Handling 
         try {
-            Conn c = new Conn();                // We are trying to insert the data in MySql By using DDL or DML commands
-            String query = "insert into signuptwo values ('"+formno+"', '"+sreligion+"', '"+scategory+"', '"+sincome+"', '"+seducation+"', '"+soccupation+"', '"+span+"', '"+saadhar+"', '"+seniorcitizon+"', '"+existingaccount+"')";     
-            c.s.executeUpdate(query);
-            JOptionPane.showMessageDialog(null, "Details submitted successfully!");
-                
+            if (span.isEmpty() || saadhar.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "All fields are required!");
+                return;
+            }
+            
+            if (span.length() != 10){
+                JOptionPane.showMessageDialog(null, "PAN Number must be 10 characters long!");
+                return;
+            }
+            
+            if (saadhar.length() != 12) {
+                JOptionPane.showMessageDialog(null, "Aadhar Number must be 12 digits long!");
+                return;
+            }
+            
+            else {
+                Conn c = new Conn();                // We are trying to insert the data in MySql By using DDL or DML commands
+                String query = "insert into signuptwo values ('"+formno+"', '"+sreligion+"', '"+scategory+"', '"+sincome+"', '"+seducation+"', '"+soccupation+"', '"+span+"', '"+saadhar+"', '"+seniorcitizon+"', '"+existingaccount+"')";     
+                c.s.executeUpdate(query);
+                JOptionPane.showMessageDialog(null, "Details submitted successfully!");
+
                 // Navigate to SignupThree (uncomment once implemented)
                 // new SignupThree(formno).setVisible(true);
                 // setVisible(false);
-            
+            }
         }
         catch (Exception e){
             System.out.println(e);
