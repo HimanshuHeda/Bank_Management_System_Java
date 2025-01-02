@@ -245,8 +245,8 @@ public class SignupTwo extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Details submitted successfully!");
 
                 // Navigate to SignupThree (uncomment once implemented)
-                // new SignupThree(formno).setVisible(true);
-                // setVisible(false);
+                setVisible(false);
+                new SignupThree(formno).setVisible(true);
             }
         }
         catch (Exception e){
