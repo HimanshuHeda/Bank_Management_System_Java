@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class PinChange extends JFrame implements ActionListener {
     
-    JTextField pin,repin;
+    JPasswordField pin,repin;
     JButton change,back;
     String pinnumber;
     
@@ -34,7 +34,7 @@ public class PinChange extends JFrame implements ActionListener {
         pintext.setBounds(165, 320, 180,25);
         image.add(pintext);
         
-        pin = new JTextField();
+        pin = new JPasswordField();
         pin.setFont(new Font("Raleway",Font.BOLD, 25));
         pin.setBounds(330, 320, 180,25);
         image.add(pin);
@@ -45,7 +45,7 @@ public class PinChange extends JFrame implements ActionListener {
         repintext.setBounds(165, 360, 180,25);
         image.add(repintext);
         
-        repin = new JTextField();
+        repin = new JPasswordField();
         repin.setFont(new Font("Raleway",Font.BOLD, 25));
         repin.setBounds(330, 360, 180,25);
         image.add(repin);
@@ -62,6 +62,7 @@ public class PinChange extends JFrame implements ActionListener {
         
         setSize(900,900);
         setLocation(300,0);
+        setUndecorated(true);
         setVisible(true);
     }
     
@@ -83,6 +84,11 @@ public class PinChange extends JFrame implements ActionListener {
                 
                 if(rpin.equals("")){
                     JOptionPane.showMessageDialog(null, "Please re-enter new PIN");
+                    return;
+                }
+                
+                if (!npin.matches("\\d{4}")) {
+                    JOptionPane.showMessageDialog(null, "PIN must be a 4-digit number");
                     return;
                 }
                 
