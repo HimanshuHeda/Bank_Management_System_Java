@@ -23,7 +23,7 @@ public class Withdrawl extends JFrame implements ActionListener {
         image.setBounds(0,0,900, 900);
         add(image);
         
-        JLabel text = new JLabel("Enter the amount you want to deposit");
+        JLabel text = new JLabel("Enter the amount you want to Withdrawl");
         text.setForeground(Color.WHITE);
         text.setFont(new Font("System", Font.BOLD, 16 ));   
         text.setBounds(170, 300, 400, 20);
