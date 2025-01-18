@@ -72,7 +72,7 @@ Log out when finished by clicking the Exit button.
 ![image](https://github.com/user-attachments/assets/d349c918-646e-4aa6-8ed1-33596f92e993)
 
 ##### Withdrawl:
-![image](https://github.com/user-attachments/assets/26272f5e-c3a2-4e08-bbba-b870895a9784)
+![Screenshot 2025-01-15 153737](https://github.com/user-attachments/assets/02f58ef8-7729-45d4-975b-0c5c4f613bc8)
 
 ##### FastCash:
 ![image](https://github.com/user-attachments/assets/2a8dd60d-27f2-46c2-a75f-5f1d4ab4ce49)
