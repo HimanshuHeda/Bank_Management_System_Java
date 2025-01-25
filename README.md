@@ -28,7 +28,7 @@ An IDE for Java development (e.g., IntelliJ IDEA, Eclipse, or NetBeans).
 Steps
 
 ### Clone the repository or download the source code.
-git clone https://github.com/YourGitHubUsername/BankManagementSystem.git
+git clone https://github.com/HimanshuHeda/BankManagementSystem.git
 Open the project in your Java IDE.
 Set up the database:
 Import the provided SQL script (database_setup.sql) to create the required tables in MySQL.
