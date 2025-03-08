@@ -211,7 +211,10 @@ public class SignupOne extends JFrame implements ActionListener {
         String formno = "" + random;                // Long (""+) -- it will conver it in string
         String name = nameTextField.getText();      // Set Text (get text) -- is use to find the value from text field
         String fname = fnameTextField.getText();    // Set Text
-        String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+        //String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+        java.util.Date selectedDate = dateChooser.getDate();
+        java.sql.Date dob = new java.sql.Date(selectedDate.getTime());
+
         String gender = null;
         if (male.isSelected()) {
             gender = "Male";
